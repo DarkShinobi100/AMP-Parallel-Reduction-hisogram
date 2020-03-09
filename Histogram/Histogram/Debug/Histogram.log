@@ -1,2 +1,4 @@
-﻿  reductionBB.cpp
+﻿  Histogram.cpp
+\\stuhomeeven\homedrive8$\1901418\github\amp-parallel-reduction-hisogram\histogram\histogram\histogram.cpp(179): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+\\stuhomeeven\homedrive8$\1901418\github\amp-parallel-reduction-hisogram\histogram\histogram\histogram.cpp(180): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   Histogram.vcxproj -> \\StuHomeEven\HomeDrive8$\1901418\GitHub\AMP-Parallel-Reduction-hisogram\Histogram\Debug\Histogram.exe

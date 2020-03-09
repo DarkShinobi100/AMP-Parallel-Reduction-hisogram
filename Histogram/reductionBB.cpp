@@ -129,25 +129,25 @@ float vector_sum_amp_tiled(int element_count, std::vector<float>& source)
 	}
 	return 0;
 } // vector_sum_amp
-
-int main(int argc, char *argv[])
-{
-	query_AMP_support();
-
-	std::vector<int> v1(SIZE, 1);
-
-	unsigned element_count = SIZE;
-	float expected_result = 0.0f;
-	std::vector<float> source(element_count);
-	for (unsigned int i = 0; i < element_count; ++i)
-	{
-		// Element range is  (0 - 0.15) to avoid overflow or underflow
-		source[i] = (i & 0xf) * 0.01f;
-	}
-	
-	vector_sum_amp_tiled(element_count, source);
-
-	    //TO DO: VERIFY THE REDUCTION GIVES THE RIGHT ANSWER
-	
-		return 0;
-} // main
+//
+//int main(int argc, char *argv[])
+//{
+//	query_AMP_support();
+//
+//	std::vector<int> v1(SIZE, 1);
+//
+//	unsigned element_count = SIZE;
+//	float expected_result = 0.0f;
+//	std::vector<float> source(element_count);
+//	for (unsigned int i = 0; i < element_count; ++i)
+//	{
+//		// Element range is  (0 - 0.15) to avoid overflow or underflow
+//		source[i] = (i & 0xf) * 0.01f;
+//	}
+//	
+//	vector_sum_amp_tiled(element_count, source);
+//
+//	    //TO DO: VERIFY THE REDUCTION GIVES THE RIGHT ANSWER
+//	
+//		return 0;
+//} // main

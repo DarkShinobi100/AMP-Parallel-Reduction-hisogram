@@ -1,5 +1,8 @@
 // Mandelbrot set example
+// Adam Sampson <a.sampson@abertay.ac.uk>
 
+//standard mandelbrot timed at 2819 ms
+//zoomed in mandelbrot timed at 5064 ms
 //both of these are with a size of 1920x1200 (widthxheight)
 //function compute_mandelbrot is at least O(N)^2 as where each pixel corresponds onto the screen is calculated within a nested for loop
 
@@ -173,8 +176,8 @@ void compute_mandelbrot(double left, double right, double top, double bottom, in
 
 		// Work out the point in the complex plane that
 		// corresponds to this pixel in the output image.
-		c.x = left + (h * (right - left) / WIDTH);
-		c.y = top + (w * (bottom - top) / HEIGHT);
+		c.x = left + (w * (right - left) / WIDTH);
+		c.y = top + (h * (bottom - top) / HEIGHT);
 
 		// Start off z at (0, 0)
 		Complex1 z;
@@ -186,8 +189,8 @@ void compute_mandelbrot(double left, double right, double top, double bottom, in
 		int iterations = 0;
 		while (c_abs(z) < 2.0 && iterations < MAX_ITERATIONS)
 		{
-			z.x = (z.x * z.x) + c.x;
-			z.y = (z.y * z.y) + c.y;
+			z = c_mul(z, z);
+			z = c_add(z, c);
 
 			++iterations;
 		}
@@ -207,7 +210,12 @@ void compute_mandelbrot(double left, double right, double top, double bottom, in
 
 		}
 	});
+
+
 }
+
+
+
 
 int main(int argc, char *argv[])
 {
@@ -223,8 +231,8 @@ int main(int argc, char *argv[])
 	{
 		// This shows the whole set.
 		the_clock::time_point start = the_clock::now();
-		//compute_mandelbrot(-2.0, 1.0, 1.125, -1.125, (HEIGHT / 16) * multiply, (HEIGHT / 16) * (multiply+1));
-		compute_mandelbrot(-0.751085, -0.734975, 0.118378, 0.134488, (HEIGHT / 16) * multiply, (HEIGHT / 16) * (multiply + 1));
+		compute_mandelbrot(-2.0, 1.0, 1.125, -1.125, (HEIGHT / 16) * multiply, (HEIGHT / 16) * (multiply + 1));
+		//compute_mandelbrot(-0.751085, -0.734975, 0.118378, 0.134488, (HEIGHT / 16) * multiply, (HEIGHT / 16) * (multiply + 1));
 		the_clock::time_point end = the_clock::now();
 		// Compute the difference between the two times in milliseconds
 		auto time_taken = duration_cast<milliseconds>(end - start).count();
