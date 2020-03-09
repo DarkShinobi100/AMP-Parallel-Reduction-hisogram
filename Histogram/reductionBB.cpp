@@ -20,6 +20,7 @@ using std::chrono::duration_cast;
 using std::chrono::milliseconds;
 using std::cout;
 using std::endl;
+using std::cin; //read in data
 
 // Define the alias "the_clock" for the clock type we're going to use.
 typedef std::chrono::steady_clock the_serial_clock;
@@ -147,6 +148,6 @@ int main(int argc, char *argv[])
 	vector_sum_amp_tiled(element_count, source);
 
 	    //TO DO: VERIFY THE REDUCTION GIVES THE RIGHT ANSWER
-
+	
 		return 0;
 } // main
