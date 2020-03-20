@@ -157,6 +157,27 @@ Complex1 c_mul(Complex1 c1, Complex1 c2) restrict(cpu, amp)
 
 } // c_mul
 
+  //List and select the accelerator to use
+  void list_accelerators()
+  {
+  	//get all accelerators available to us and store in a vector so we can extract details
+  	std::vector<accelerator> accls = accelerator::get_all();
+  
+  	// iterates over all accelerators and print characteristics
+  	for (unsigned i = 0; i < accls.size(); i++)
+  	{
+  		accelerator a = accls[i];
+  		//report_accelerator(a);
+  		//if ((a.dedicated_memory > 0) & (a.dedicated_memory < 0.5*(1024.0f * 1024.0f)))
+  		//accelerator::set_default(a.device_path);
+  	}
+  
+  	accelerator::set_default(accls[0].device_path);
+  	accelerator acc = accelerator(accelerator::default_accelerator);
+  	std::wcout << " default acc = " << acc.description << endl;
+  
+  } // list_accelerators
+
 
   // Render the Mandelbrot set into the image array.
   // The parameters specify the region on the complex plane to plot.
@@ -165,7 +186,7 @@ void compute_mandelbrot(double left, double right, double top, double bottom, in
 	uint32_t* pImage = &(image[0][0]);
 	array_view<uint32_t, 2> a(HEIGHT, WIDTH, pImage); //this is called "a" for 'reasons *head nod* ;) aubergene(eggplant) *water dropplets sfx*(;' 
 	a.discard_data();
-
+	list_accelerators();
 	parallel_for_each(a.extent, [=](concurrency::index<2> idx)
 		restrict(amp) {
 		//compute madelbrot here i.e madelbrot kernel/shader

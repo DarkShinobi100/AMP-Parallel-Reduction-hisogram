@@ -39,26 +39,26 @@ void report_accelerator(const accelerator a)
 		<< endl << "       supports_limited_double_precision = " << bs[a.supports_limited_double_precision]
 		<< endl;
 }
-// List and select the accelerator to use
-void list_accelerators()
-{
-	//get all accelerators available to us and store in a vector so we can extract details
-	std::vector<accelerator> accls = accelerator::get_all();
-
-	// iterates over all accelerators and print characteristics
-	for (unsigned i = 0; i < accls.size(); i++)
-	{
-		accelerator a = accls[i];
-		report_accelerator(a);
-		//if ((a.dedicated_memory > 0) & (a.dedicated_memory < 0.5*(1024.0f * 1024.0f)))
-		//accelerator::set_default(a.device_path);
-	}
-
-	accelerator::set_default(accls[2].device_path);
-	accelerator acc = accelerator(accelerator::default_accelerator);
-	std::wcout << " default acc = " << acc.description << endl;
-
-} // list_accelerators
+ //List and select the accelerator to use
+//void list_accelerators()
+//{
+//	//get all accelerators available to us and store in a vector so we can extract details
+//	std::vector<accelerator> accls = accelerator::get_all();
+//
+//	// iterates over all accelerators and print characteristics
+//	for (unsigned i = 0; i < accls.size(); i++)
+//	{
+//		accelerator a = accls[i];
+//		report_accelerator(a);
+//		//if ((a.dedicated_memory > 0) & (a.dedicated_memory < 0.5*(1024.0f * 1024.0f)))
+//		//accelerator::set_default(a.device_path);
+//	}
+//
+//	accelerator::set_default(accls[0].device_path);
+//	accelerator acc = accelerator(accelerator::default_accelerator);
+//	std::wcout << " default acc = " << acc.description << endl;
+//
+//} // list_accelerators
 
   // query if AMP accelerator exists on hardware
 void query_AMP_support()
@@ -71,7 +71,7 @@ void query_AMP_support()
 	else
 	{
 		cout << "Accelerators found that are compatible with C++ AMP" << std::endl;
-		list_accelerators();
+//		list_accelerators();
 	}
 } // query_AMP_support
 
@@ -149,5 +149,6 @@ float vector_sum_amp_tiled(int element_count, std::vector<float>& source)
 //
 //	    //TO DO: VERIFY THE REDUCTION GIVES THE RIGHT ANSWER
 //	
+//		//wait(1000000);
 //		return 0;
 //} // main
